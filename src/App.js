@@ -1,13 +1,20 @@
-import React from "react";
-import { Header, Skills, Plugins } from "./components";
+import React, { useState, useEffect } from "react";
+import { Header, Plugins, Categories, Selector } from "./components";
 import data from "./data";
 
 const App = () => {
+  const [searchValue, setSearchValue] = useState("Plugins");
+
   const { plugins, skills } = data;
   return (
     <>
       <Header />
-      <Plugins plugins={plugins} skills={skills} />
+      <Selector searchValue={searchValue} setSearchValue={setSearchValue} />
+      {searchValue === "Plugins" ? (
+        <Plugins plugins={plugins} skills={skills} />
+      ) : (
+        <Categories skills={skills} />
+      )}
     </>
   );
 };

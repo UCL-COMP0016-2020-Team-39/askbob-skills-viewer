@@ -8,7 +8,7 @@ const Header = () => {
   return (
     <AppBar position='static' className={classes.header}>
       <Toolbar>
-        <Typography variant='h4'>AskBob - Skills</Typography>
+        <Typography variant='h4'>AskBob - Plugins</Typography>
       </Toolbar>
     </AppBar>
   );

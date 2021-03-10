@@ -4,7 +4,8 @@ const data = {
       plugin: "click",
       description: "allows you to click on screen",
       author: "John Smith",
-      icon: "",
+      icon:
+        "https://lh3.googleusercontent.com/r3Av3MNtpPoCgUtj8EbFxqnyPozuHALmNc6Abg78sJuBMICm4gAXBQNOhDHXS5a1AtdB7wznc6WveZTHDLfjNuba_fk=w640-h400-e365-rj-sc0x00ffffff",
     },
     {
       plugin: "fise",
@@ -40,7 +41,7 @@ const data = {
   skills: [
     {
       plugin: "click",
-      category: "miscellaneous",
+      category: "General",
       description: "simulate a left click",
       examples: [
         "click",
@@ -67,7 +68,7 @@ const data = {
     },
     {
       plugin: "fise",
-      category: "miscellaneous",
+      category: "Lifestyle",
       description: "call another user via video conferencing",
       examples: [
         "call Daniel",
@@ -109,7 +110,7 @@ const data = {
     },
     {
       plugin: "puns",
-      category: "miscellaneous",
+      category: "Lifestyle",
       description: "assure the user of the quality of dad jokes",
       examples: [
         "Are you funny?",
@@ -134,7 +135,7 @@ const data = {
     },
     {
       plugin: "weather",
-      category: "miscellaneous",
+      category: "General",
       description: "give the weather at a given location",
       examples: [
         "what is the weather in Manchester?",
@@ -153,7 +154,7 @@ const data = {
     },
     {
       plugin: "main",
-      category: "miscellaneous",
+      category: "General",
       description: "Say goodbye to the user.",
       examples: [
         "Goodbye",

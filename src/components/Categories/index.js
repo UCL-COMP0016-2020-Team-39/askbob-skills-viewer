@@ -20,34 +20,29 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function Plugins({ plugins, skills }) {
+export default function Categories({ skills }) {
   const classes = useStyles();
 
+  const categories = [...new Set(skills.map(skill => skill.category))];
+
+  console.log(categories);
   return (
     <>
-      {plugins.map(p => {
-        const { plugin, description, author } = p;
-
-        const pluginSkills = skills.filter(skill => skill.plugin === plugin);
+      {categories.map(category => {
+        const pluginSkills = skills.filter(
+          skill => skill.category === category
+        );
 
         return (
-          <Accordion key={plugin}>
+          <Accordion key={category}>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls='panel1a-content'
               id='panel1a-header'
             >
-              <Typography variant='h5'>{plugin}</Typography>
+              <Typography variant='h5'>{category}</Typography>
             </AccordionSummary>
             <AccordionDetails className={classes.details}>
-              <Typography variant='h5'>description</Typography>
-              <Typography variant='h5' className={classes.title}>
-                {description || "N/A"}
-              </Typography>
-              <Typography variant='h5'>Author</Typography>
-              <Typography variant='h5' className={classes.title}>
-                {author || "N/A"}
-              </Typography>
               <Typography variant='h5'>Skills</Typography>
               <Skills skills={pluginSkills} />
             </AccordionDetails>

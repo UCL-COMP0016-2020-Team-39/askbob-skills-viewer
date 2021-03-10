@@ -5,7 +5,7 @@ import { Grid } from "@material-ui/core";
 
 const Skills = ({ skills }) => {
   return (
-    <Grid container spacing={2} alignContent='stretch'>
+    <Grid container wrap spacing={2} alignContent='stretch'>
       {skills.map(skill => (
         <Grid item>
           <Skill key={skill.id} {...skill} />

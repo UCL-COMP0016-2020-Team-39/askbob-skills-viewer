@@ -10,17 +10,18 @@ const useFetchData = url => {
     const fetchData = async url => {
       try {
         setLoading(true);
-        setErrorText("");
         const request = new Request(url);
         const response = await fetch(request);
+        console.log("rsponse is", response);
 
         const data = await response.json();
 
         setSkills(data.skills);
         setPlugins(data.plugins);
+        setErrorText("");
       } catch (err) {
-        setErrorText(err.message);
-        console.log(err);
+        console.log(err.message);
+        setErrorText("Cannot read from url");
       } finally {
         setLoading(false);
       }

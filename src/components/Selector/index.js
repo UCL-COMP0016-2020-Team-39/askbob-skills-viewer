@@ -1,4 +1,6 @@
 import React from "react";
+import useStyles from "./styles";
+
 import {
   Card,
   CardContent,
@@ -6,24 +8,36 @@ import {
   FormControl,
   FormLabel,
   MenuItem,
-  Typography,
+  TextField,
 } from "@material-ui/core";
 
-const Selector = ({ searchValue, setSearchValue }) => {
+const Selector = ({ sortBy, setSortBy, url, setUrl }) => {
+  const classes = useStyles();
+
   return (
-    <Card>
-      <CardContent>
-        <FormControl>
+    <Card className={classes.root}>
+      <CardContent className={classes.selector}>
+        <FormControl className={classes.formControl}>
           <FormLabel>Sort By</FormLabel>
           <Select
-            value={searchValue}
+            value={sortBy}
             onChange={e => {
-              setSearchValue(e.target.value);
+              setSortBy(e.target.value);
             }}
           >
             <MenuItem value='Plugins'>Plugins</MenuItem>
             <MenuItem value='Categories'>Categories</MenuItem>
           </Select>
+        </FormControl>
+        <FormControl className={classes.formControl}>
+          <FormLabel>Url</FormLabel>
+          <TextField
+            placeholder='Add url'
+            value={url}
+            onChange={e => {
+              setUrl(e.target.value);
+            }}
+          />
         </FormControl>
       </CardContent>
     </Card>

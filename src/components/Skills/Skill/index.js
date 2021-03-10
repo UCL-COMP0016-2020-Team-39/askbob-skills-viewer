@@ -13,8 +13,10 @@ const Skill = ({ description, category, plugin, examples }) => {
         <Typography variant='h6'>{`Plugin: ${plugin}`}</Typography>
         <Typography variant='h6'>Examples</Typography>
 
-        {examples.map(example => (
-          <Typography variant='body2'>{example}</Typography>
+        {examples.map((example, index) => (
+          <Typography variant='body2' key={index}>
+            {example}
+          </Typography>
         ))}
       </CardContent>
     </Card>

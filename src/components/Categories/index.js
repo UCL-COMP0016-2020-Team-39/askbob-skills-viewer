@@ -25,16 +25,15 @@ export default function Categories({ skills }) {
 
   const categories = [...new Set(skills.map(skill => skill.category))];
 
-  console.log(categories);
   return (
     <>
-      {categories.map(category => {
+      {categories.map((category, index) => {
         const pluginSkills = skills.filter(
           skill => skill.category === category
         );
 
         return (
-          <Accordion key={category}>
+          <Accordion key={index}>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls='panel1a-content'

@@ -25,13 +25,13 @@ export default function Plugins({ plugins, skills }) {
 
   return (
     <>
-      {plugins.map(p => {
+      {plugins.map((p, index) => {
         const { plugin, description, author } = p;
 
         const pluginSkills = skills.filter(skill => skill.plugin === plugin);
 
         return (
-          <Accordion key={plugin}>
+          <Accordion key={index}>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls='panel1a-content'

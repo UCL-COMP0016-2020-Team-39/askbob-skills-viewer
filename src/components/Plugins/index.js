@@ -1,9 +1,11 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import Accordion from "@material-ui/core/Accordion";
-import AccordionSummary from "@material-ui/core/AccordionSummary";
-import AccordionDetails from "@material-ui/core/AccordionDetails";
-import Typography from "@material-ui/core/Typography";
+import {
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+  Typography,
+} from "@material-ui/core/";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 import { Skills } from "../";
@@ -15,6 +17,13 @@ const useStyles = makeStyles(theme => ({
   heading: {
     fontSize: theme.typography.pxToRem(15),
     fontWeight: theme.typography.fontWeightRegular,
+  },
+  details: {
+    display: "flex",
+    flexDirection: "column",
+  },
+  title: {
+    marginBottom: "1rem",
   },
 }));
 
@@ -35,11 +44,18 @@ export default function Plugins({ plugins, skills }) {
               aria-controls='panel1a-content'
               id='panel1a-header'
             >
-              <Typography variant='h5' className={classes.heading}>
-                {plugin}
-              </Typography>
+              <Typography variant='h5'>{plugin}</Typography>
             </AccordionSummary>
-            <AccordionDetails>
+            <AccordionDetails className={classes.details}>
+              <Typography variant='h5'>description</Typography>
+              <Typography variant='h5' className={classes.title}>
+                {description || "N/A"}
+              </Typography>
+              <Typography variant='h5'>Author</Typography>
+              <Typography variant='h5' className={classes.title}>
+                {author || "N/A"}
+              </Typography>
+              <Typography variant='h5'>Skills</Typography>
               <Skills skills={pluginSkills} />
             </AccordionDetails>
           </Accordion>

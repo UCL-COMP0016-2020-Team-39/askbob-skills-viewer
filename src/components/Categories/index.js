@@ -1,5 +1,6 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import PropTypes from "prop-types";
+
 import {
   Accordion,
   AccordionSummary,
@@ -10,17 +11,9 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 import { Skills } from "../";
 
-const useStyles = makeStyles(theme => ({
-  details: {
-    display: "flex",
-    flexDirection: "column",
-  },
-  title: {
-    marginBottom: "1rem",
-  },
-}));
+import useStyles from "./styles";
 
-export default function Categories({ skills }) {
+const Categories = ({ skills }) => {
   const classes = useStyles();
 
   const categories = [...new Set(skills.map(skill => skill.category))];
@@ -50,4 +43,16 @@ export default function Categories({ skills }) {
       })}
     </>
   );
-}
+};
+
+Categories.propTypes = {
+  skills: PropTypes.arrayOf(
+    PropTypes.shape({
+      plugin: PropTypes.string.isRequired,
+      category: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+      examples: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+    })
+  ),
+};
+export default Categories;

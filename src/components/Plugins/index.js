@@ -1,5 +1,6 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import PropTypes from "prop-types";
+
 import {
   Accordion,
   AccordionSummary,
@@ -10,17 +11,9 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 import { Skills } from "../";
 
-const useStyles = makeStyles(theme => ({
-  details: {
-    display: "flex",
-    flexDirection: "column",
-  },
-  title: {
-    marginBottom: "1rem",
-  },
-}));
+import useStyles from "./styles";
 
-export default function Plugins({ plugins, skills }) {
+const Plugins = ({ plugins, skills }) => {
   const classes = useStyles();
 
   return (
@@ -56,4 +49,24 @@ export default function Plugins({ plugins, skills }) {
       })}
     </>
   );
-}
+};
+
+Plugins.propTypes = {
+  plugins: PropTypes.arrayOf(
+    PropTypes.shape({
+      plugin: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+      author: PropTypes.string,
+      icon: PropTypes.string,
+    })
+  ),
+  skills: PropTypes.arrayOf(
+    PropTypes.shape({
+      plugin: PropTypes.string.isRequired,
+      category: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+      examples: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+    })
+  ),
+};
+export default Plugins;

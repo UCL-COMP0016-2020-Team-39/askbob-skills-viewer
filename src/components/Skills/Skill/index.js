@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Card, CardContent, Typography } from "@material-ui/core";
 
 import useStyles from "./styles";
@@ -23,4 +24,10 @@ const Skill = ({ description, category, plugin, examples }) => {
   );
 };
 
+Skill.propTypes = {
+  description: PropTypes.string.isRequired,
+  category: PropTypes.string.isRequired,
+  plugin: PropTypes.string.isRequired,
+  examples: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+};
 export default Skill;

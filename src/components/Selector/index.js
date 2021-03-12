@@ -1,4 +1,6 @@
 import React from "react";
+import PropTypes from "prop-types";
+
 import useStyles from "./styles";
 
 import {
@@ -11,7 +13,7 @@ import {
   TextField,
 } from "@material-ui/core";
 
-const Selector = ({ sortBy, setSortBy, url, setUrl }) => {
+const Selector = ({ sortBy, setSortBy, url, setUrl, errorText }) => {
   const classes = useStyles();
 
   return (
@@ -34,6 +36,8 @@ const Selector = ({ sortBy, setSortBy, url, setUrl }) => {
           <TextField
             placeholder='Add url'
             value={url}
+            helperText={errorText}
+            error={!!errorText}
             onChange={e => {
               setUrl(e.target.value);
             }}
@@ -44,4 +48,11 @@ const Selector = ({ sortBy, setSortBy, url, setUrl }) => {
   );
 };
 
+Selector.propTypes = {
+  sortBy: PropTypes.string.isRequired,
+  setSortBy: PropTypes.func.isRequired,
+  url: PropTypes.string.isRequired,
+  setUrl: PropTypes.func.isRequired,
+  errorText: PropTypes.string.isRequired,
+};
 export default Selector;

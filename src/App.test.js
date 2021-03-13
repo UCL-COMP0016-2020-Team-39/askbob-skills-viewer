@@ -1,4 +1,4 @@
-import { screen, render, act, fireEvent } from "@testing-library/react";
+import { screen, render, act } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import App from "./App";
 const plugins = [
@@ -28,13 +28,17 @@ const skills = [
   },
 ];
 
-global.fetch = jest.fn(() =>
-  Promise.resolve({
-    json: () => {
-      return setTimeout(Promise.resolve({ skills, plugins }), 3000);
-    },
-  })
-);
+beforeEach(() => {
+  global.fetch = jest.fn(() =>
+    Promise.resolve({
+      json: () => Promise.resolve({ skills, plugins }),
+    })
+  );
+});
+
+afterEach(() => {
+  fetch.mockClear();
+});
 
 const sleep = async ms => {
   await setTimeout(() => {}, ms);
@@ -50,9 +54,13 @@ it("shows loading at start", async () => {
 });
 
 it("loads plugins after loading", async () => {
+  let loadingTag;
   await act(async () => {
     render(<App />);
+    loadingTag = screen.getByText(/Loading.../);
   });
 
   await sleep(3050);
+
+  expect(loadingTag).not.toBeInTheDocument();
 });

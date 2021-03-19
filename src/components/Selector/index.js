@@ -34,7 +34,7 @@ const Selector = ({ sortBy, setSortBy, url, setUrl, errorText }) => {
         <FormControl className={classes.formControl}>
           <FormLabel>Url</FormLabel>
           <TextField
-            placeholder='Add url'
+            placeholder='Add AskBob skills endpoint URL'
             value={url}
             helperText={errorText}
             error={!!errorText}

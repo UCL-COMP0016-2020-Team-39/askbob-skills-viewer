@@ -7,6 +7,8 @@ import { Typography } from "@material-ui/core";
 import useStyles from "./styles";
 import { useHistory } from "react-router-dom";
 
+import { decode } from "querystring";
+
 const App = () => {
   const [sortBy, setSortBy] = useState("Plugins");
   const history = useHistory();
@@ -17,14 +19,9 @@ const App = () => {
 
   useEffect(() => {
     const search = history?.location?.search || "";
-    console.log("search:", search);
-    const tokens = search.split("=");
-    console.log("tokens:", tokens);
-    console.log("tokens.length:", tokens.length);
+    const searchTerms = decode(search.substring(1));
 
-    const newUrl = tokens.length === 2 ? tokens[1] : "";
-    console.log("newUrl:", newUrl);
-
+    const newUrl = searchTerms?.url || "";
     setUrl(newUrl);
   }, [history]);
   if (loading) {

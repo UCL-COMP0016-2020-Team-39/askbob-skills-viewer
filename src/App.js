@@ -21,7 +21,13 @@ const App = () => {
     const search = history?.location?.search || "";
     const searchTerms = decode(search.substring(1));
 
-    const newUrl = searchTerms?.url || "";
+    let newUrl = searchTerms?.url || "";
+
+    try {
+      newUrl = decodeURI(newUrl);
+    } catch (err) {
+      console.log(err);
+    }
     setUrl(newUrl);
   }, [history]);
   if (loading) {
